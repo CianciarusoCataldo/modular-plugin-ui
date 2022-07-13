@@ -1,7 +1,7 @@
 {
   "name": "modular-plugin-ui",
-  "version": "0.1.1",
-  "description": "Manage dark mode and ui properties with modular-engine system",
+  "version": "0.2.0",
+  "description": "Manage ui properties with modular-engine system",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/CianciarusoCataldo/modular-plugin-ui#readme",
   "peerDependencies": {
-    "modular-utils": "^0.3.1"
+    "modular-engine-tools": "^0.1.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.0",
@@ -35,7 +35,7 @@
     "enzyme": "^3.11.0",
     "jest": "^27.4.7",
     "jest-transform-stub": "^2.0.0",
-    "modular-utils": "^0.3.1",
+    "modular-engine-tools": "^0.1.0",
     "rollup": "^2.44.0",
     "rollup-plugin-banner2": "^1.2.2",
     "rollup-plugin-delete": "^2.0.0",

@@ -1,21 +1,25 @@
 /**
- * @file `ui` plugin initial state file
+ * @file {@link https://github.com/CianciarusoCataldo/modular-plugin-ui modular-plugin-ui} initial state file
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui
  *
  * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
  *
  * @copyright Cataldo Cianciaruso 2022
  */
 
-import { UIState } from "./types";
+import { UiPluginState } from "./types";
 
 /**
- * Internal `ui` plugin initial state
+ * {@link https://github.com/CianciarusoCataldo/modular-plugin-ui modular-plugin-ui} initial state
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui
  *
  * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
  *
  * @copyright Cataldo Cianciaruso 2022
  */
-const uiInitialState: UIState = {
+const uiInitialState: UiPluginState = {
   darkMode: false,
 };
 

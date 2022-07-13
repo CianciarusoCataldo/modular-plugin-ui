@@ -1,5 +1,9 @@
 /**
- * @file `ui` plugin types definitions
+ * @file {@link https://github.com/CianciarusoCataldo/modular-plugin-ui modular-plugin-ui} types definitions
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui
+ * @see https://cianciarusocataldo.github.io/modular-engine/docs
+ *
  *
  * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
  *
@@ -12,24 +16,47 @@ import {
 } from "modular-engine-types";
 
 /**
- * `ui` plugin state slice
+ *{@link https://github.com/CianciarusoCataldo/modular-plugin-ui modular-plugin-ui} state
+ *
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui
+ * @see https://cianciarusocataldo.github.io/modular-engine/docs
  *
  * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
  *
  * @copyright Cataldo Cianciaruso 2022
  */
-export type UIState = ModularEngineCustomState<{
+export type UiPluginState = ModularEngineCustomState<{
+  /** dark mode status */
   darkMode: boolean;
 }>;
 
 /**
- * `ui` plugin settings
+ * {@link https://cianciarusocataldo.github.io/modular-plugin-ui modular-plugin-ui} settings
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui
+ * @see https://cianciarusocataldo.github.io/modular-engine/docs
  *
  * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
  *
  * @copyright Cataldo Cianciaruso 2022
  */
-export type UiPlugin = ModularEnginePlugin<{
+export type UiPluginSettings = ModularEngineCustomState<{
+  /** Initial dark mode status */
   darkMode?: boolean;
+
+  /** Callbacks called everytime the dark mode status is changed */
   onDarkModeChange?: ((newDarkMode: boolean) => void)[];
 }>;
+
+/**
+ * {@link https://cianciarusocataldo.github.io/modular-plugin-ui modular-plugin-ui} interface
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui
+ * @see https://cianciarusocataldo.github.io/modular-engine/docs
+ *
+ * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
+ *
+ * @copyright Cataldo Cianciaruso 2022
+ */
+export type UiPlugin = ModularEnginePlugin<UiPluginSettings>;

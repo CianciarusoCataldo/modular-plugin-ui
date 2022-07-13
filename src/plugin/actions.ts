@@ -1,15 +1,18 @@
 /**
- * @file `ui` plugin actions, to use advanced app ui features (like dark-mode)
+ * @file {@link https://cianciarusocataldo.github.io//modular-plugin-ui/#/?id=actions modular-plugin-ui actions} file
  *
  * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
  *
  * @copyright Cataldo Cianciaruso 2022
  */
 
-import { createModularAction } from "modular-utils";
+import { createModularAction } from "modular-engine-tools";
 
 /**
  * Switch UI dark mode to on/off
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui/#/?id=actions
+ * @see https://cianciarusocataldo.github.io/modular-engine/docs
  *
  * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
  *

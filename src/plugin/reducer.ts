@@ -1,26 +1,29 @@
 /**
- * @file `ui` plugin reducer file
+ * @file {@link https://github.com/CianciarusoCataldo/modular-plugin-ui modular-plugin-ui} reducer file
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui
  *
  * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
  *
  * @copyright Cataldo Cianciaruso 2022
  */
 
-/** types */
 import { ModularEngineEffects } from "modular-engine-types";
 
-/** internal */
 import { setDarkMode } from "./actions";
-import { UIState } from "./types";
+import { UiPluginState } from "./types";
 
 /**
- * `ui-manager` plugin reducer
+ * {@link https://github.com/CianciarusoCataldo/modular-plugin-ui modular-plugin-ui} reducer
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui
+ * @see https://cianciarusocataldo.github.io/modular-engine/docs
  *
  * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
  *
  * @copyright Cataldo Cianciaruso 2022
  */
-const uiReducer: ModularEngineEffects<UIState> = {
+const uiReducer: ModularEngineEffects<UiPluginState> = {
   [setDarkMode.type]: (state, action) => ({
     ...state,
     darkMode: action.payload.newDarkMode,
