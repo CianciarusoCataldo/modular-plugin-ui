@@ -21,6 +21,7 @@ Manage ui properties with [modular-engine](https://github.com/CianciarusoCataldo
   - [Installation](#installation)
   - [Usage](#usage)
 - [API](#api)
+  - [Config](#config)
   - [Actions](#actions)
   - [Selectors](#selectors)
 - [Integration with other plugins](#integration-with-other-plugins)
@@ -79,7 +80,14 @@ You can see a live preview by visiting [modular-engine-playground](https://cianc
 
 ## API
 
-With the plugin itself, some other useful selectors and actions are exported by this lib, to easily work with any component
+### Config
+
+This plugin adds a custom field inside the modular-engine config, `ui`. This new field contains 1 field, to easily integrate new functions:
+
+| Setting | Description                      |
+| -------------- | ------------------------------ |
+| `onDarkModeChange`  | - array of callbacks called everytime the dark-mode is enabled or disabled |
+
 
 ### Actions
 
@@ -150,7 +158,7 @@ export const CustomComponent = () => {
 
   return (
     <Container dark={darkMode}>
-      <p>{`dark mode is ${darkMode ? "enabled" : disabled}`}</p>
+      <p>{`dark mode is ${darkMode ? "enabled" : "disabled"}`}</p>
     </Container>
   );
 };
@@ -162,13 +170,32 @@ export const CustomComponent = () => {
 
 ## Integration with other plugins
 
-- This plugin expose some fields to work with any other plugin. If you want to interact with it, using your custom plugin, just check the `enabledPlugins` parameter inside your `format` function for `ui`. If true, you can add your callbacks to `ui` field, that contains 1 field:
+- This plugin expose some fields to work with any other plugin. If you want to interact with it, using your custom plugin, add an `interaction` for `ui` plugin:
 
-  - onDarkModeChange : callbacks called everytime the dark-mode is enabled or disabled
+```tsx
+//Just a skeleton of a custom plugin that interacts with ui plugin
+const customPlugin = () => ({
+  // Custom plugin stuffs
+
+  interactions: [
+    {
+      plugin: "ui",
+      effect: (uiConfig) => {
+        // Custom plugin stuffs
+
+        //Add the custom callback
+        uiConfig.onDarkModeChange.push(() => {
+          alert("dark mode status is changed");
+        });
+      },
+    },
+  ],
+});
+```
 
 <br>
 
-- Additionally, if you use [modular-plugin-url-checker](https://github.com/CianciarusoCataldo/modular-pluginurl-checker) too, you can change the initial dark-mode status directly from URL, with query parameters, by passing the `dark` parameter with the darkMode status you want to set. Try it with [modular-engine](https://github.com/CianciarusoCataldo/modular-engine) playground - https://cianciarusocataldo.github.io/modular-engine?dark=false
+- Additionally, if you use [modular-plugin-url-checker](https://github.com/CianciarusoCataldo/modular-pluginurl-checker) too, you can change the initial dark-mode status directly from URL, with query parameters, by passing the `dark` parameter with the darkMode status you want to set. Try it with [modular-engine](https://github.com/CianciarusoCataldo/modular-engine) playground (look at query parameters inside url) - https://cianciarusocataldo.github.io/modular-engine?dark=false
 
 <br>
 

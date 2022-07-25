@@ -6,7 +6,7 @@
  * @copyright Cataldo Cianciaruso 2022
  */
 
-import { createModularAction } from "modular-engine-tools";
+import { createModularEngineAction } from "modular-engine-tools";
 
 /**
  * Switch UI dark mode to on/off
@@ -18,7 +18,7 @@ import { createModularAction } from "modular-engine-tools";
  *
  * @copyright Cataldo Cianciaruso 2022
  */
-export const setDarkMode = createModularAction(
+export const setDarkMode = createModularEngineAction(
   "@@ui/SWITCH_DARK_MODE",
   (newDarkMode: boolean) => ({
     newDarkMode,

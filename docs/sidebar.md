@@ -6,4 +6,4 @@
 - **Modular ecosystem**
 - [Modular-engine](https://github.com/cianciarusocataldo/modular-engine)
 - [Modular-ui-components](https://github.com/cianciarusocataldo/modular-ui-components)
-- [Modular-creator](https://github.com/cianciarusocataldo/modular-ui-creator)
+- [Modular-creator](https://github.com/cianciarusocataldo/modular-creator)

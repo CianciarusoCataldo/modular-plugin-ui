@@ -12,6 +12,8 @@ import { UiPlugin } from "./types";
 import initialState from "./initial-state";
 import uiReducer from "./reducer";
 import * as actions from "./actions";
+import { isInDarkMode } from "./selectors";
+import { createModularEnginePlugin } from "modular-engine-tools";
 
 /**
  * {@link https://github.com/CianciarusoCataldo/modular-plugin-ui modular-plugin-ui} create function. To use this plugin, include it into your
@@ -45,70 +47,86 @@ import * as actions from "./actions";
  *
  * @copyright Cataldo Cianciaruso 2022
  */
-const uiPlugin: UiPlugin = () => ({
-  feature: "ui",
-  create: (config) => {
+const uiPlugin: UiPlugin = createModularEnginePlugin("ui", () => ({
+  field: (config) => {
     const uiConfig = config.ui || {};
     return {
-      field: "ui",
+      name: "ui",
       content: {
         darkMode: uiConfig.darkMode || false,
         onDarkModeChange: uiConfig.onDarkModeChange || [],
       },
     };
   },
-  redux: (config) => ({
+  reducer: (config) => ({
     initialState: { ...initialState, darkMode: config.ui.darkMode },
     slice: "ui",
     effects: uiReducer,
   }),
-  format: (config, enabledPlugins) => {
-    let input = { ...config };
-    if (enabledPlugins.urlChecker) {
-      input.urlChecker.queryParameters["dark"] = ({
-        config: paramConfig,
-        urlParam,
-      }) => {
-        let queryValue: boolean | null = null;
-        switch (urlParam.toLowerCase()) {
-          case "true": {
-            queryValue = true;
+  modularCreatorInterations: [
+    {
+      plugin: "forms",
+      effect: (field, config) => {
+        field.getDarkMode = isInDarkMode;
+
+        return field;
+      },
+    },
+    {
+      plugin: "drawer",
+      effect: (field, config) => {
+        field.getDarkMode = isInDarkMode;
+
+        return field;
+      },
+    },
+  ],
+  interactions: [
+    {
+      plugin: "urlChecker",
+      effect: (field, config) => {
+        field.queryParameters["dark"] = ({ config: paramConfig, urlParam }) => {
+          let queryValue: boolean | null = null;
+          switch (urlParam.toLowerCase()) {
+            case "true": {
+              queryValue = true;
+            }
+
+            case "false":
+              queryValue = false;
+
+            default:
+              queryValue = null;
           }
 
-          case "false":
-            queryValue = false;
+          let configInput = { ...paramConfig };
 
-          default:
-            queryValue = null;
-        }
+          configInput.ui.darkMode = queryValue !== null ? queryValue : false;
 
-        let configInput = { ...paramConfig };
+          return configInput;
+        };
 
-        configInput.ui.darkMode = queryValue !== null ? queryValue : false;
+        field.before.push("dark");
 
-        return configInput;
-      };
+        return field;
+      },
+    },
+  ],
+  middlewares: (config) => {
+    const onDarkModeChangeCallbacks = config.ui.onDarkModeChange;
 
-      input.urlChecker.before.push("dark");
-    }
-
-    return input;
+    return {
+      middlewares: [
+        (action, store) => {
+          if (action.type === actions.setDarkMode.type) {
+            onDarkModeChangeCallbacks.forEach((callback) => {
+              callback(action.payload.newDarkMode);
+            });
+          }
+        },
+      ],
+    };
   },
-  before: ({ config }) => {
-    let input = { ...config };
-
-    const onDarkModeChangeCallbacks = input.ui.onDarkModeChange;
-
-    input.redux.middlewares.push((action, store) => {
-      if (action.type === actions.setDarkMode.type) {
-        onDarkModeChangeCallbacks.forEach((callback) => {
-          callback(action.payload.newDarkMode);
-        });
-      }
-    });
-
-    return input;
-  },
-});
+}));
 
 export default uiPlugin;

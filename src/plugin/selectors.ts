@@ -7,7 +7,7 @@
  */
 
 import { ModularEngineGlobalState } from "modular-engine-types";
-import { createModularSelector } from "modular-engine-tools";
+import { createModularEngineSelector } from "modular-engine-tools";
 
 import { UiPluginState } from "./types";
 
@@ -21,7 +21,7 @@ import { UiPluginState } from "./types";
  *
  * @copyright Cataldo Cianciaruso 2022
  */
-export const getUIView = createModularSelector(
+export const getUIView = createModularEngineSelector(
   (state: Partial<ModularEngineGlobalState>): UiPluginState =>
     state.ui || {
       isHomePage: true,
@@ -41,7 +41,7 @@ export const getUIView = createModularSelector(
  *
  * @copyright Cataldo Cianciaruso 2022
  */
-export const isInDarkMode = createModularSelector(
+export const isInDarkMode = createModularEngineSelector(
   getUIView,
   ({ darkMode }) => darkMode
 );

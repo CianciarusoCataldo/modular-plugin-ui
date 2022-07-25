@@ -8,7 +8,7 @@
  * @copyright Cataldo Cianciaruso 2022
  */
 
-import { ModularEngineEffects } from "modular-engine-types";
+import { ModularEngineReducerEffects } from "modular-engine-types";
 
 import { setDarkMode } from "./actions";
 import { UiPluginState } from "./types";
@@ -23,7 +23,7 @@ import { UiPluginState } from "./types";
  *
  * @copyright Cataldo Cianciaruso 2022
  */
-const uiReducer: ModularEngineEffects<UiPluginState> = {
+const uiReducer: ModularEngineReducerEffects<UiPluginState> = {
   [setDarkMode.type]: (state, action) => ({
     ...state,
     darkMode: action.payload.newDarkMode,
