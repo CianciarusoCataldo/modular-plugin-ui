@@ -63,7 +63,7 @@ const uiPlugin: UiPlugin = createModularEnginePlugin("ui", () => ({
     slice: "ui",
     effects: uiReducer,
   }),
-  modularCreatorInterations: [
+  modularCreatorInteractions: [
     {
       plugin: "forms",
       effect: (field, config) => {
