@@ -12,7 +12,7 @@ import { UiPlugin } from "./types";
 import initialState from "./initial-state";
 import uiReducer from "./reducer";
 import * as actions from "./actions";
-import { isInDarkMode } from "./selectors";
+import { isDrawerOpen, isInDarkMode } from "./selectors";
 import { createModularEnginePlugin } from "modular-engine-tools";
 
 /**
@@ -94,6 +94,7 @@ const uiPlugin: UiPlugin = createModularEnginePlugin("ui", () => ({
         field.getDarkMode = isInDarkMode;
         field.onClose =
           field.onClose || ((dispatch) => dispatch(actions.closeDrawer()));
+        field.getDrawerVisibility = field.getDrawerVisibility || isDrawerOpen;
         return field;
       },
     },
