@@ -24,9 +24,8 @@ import { UiPluginState } from "./types";
 export const getUIView = createModularEngineSelector(
   (state: Partial<ModularEngineGlobalState>): UiPluginState =>
     state.ui || {
-      isHomePage: true,
       darkMode: false,
-      homeRoute: "",
+      isDrawerOpen: false,
     },
   (uiState) => uiState
 );
@@ -44,4 +43,19 @@ export const getUIView = createModularEngineSelector(
 export const isInDarkMode = createModularEngineSelector(
   getUIView,
   ({ darkMode }) => darkMode
+);
+
+/**
+ * Returns true if drawer is opened, false otherwise (if `drawer` is enabled into ui settings)
+ *
+ * @see https://cianciarusocataldo.github.io//modular-engine/docs
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui/#/?id=selectors
+ *
+ * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
+ *
+ * @copyright Cataldo Cianciaruso 2022
+ */
+export const isDrawerOpen = createModularEngineSelector(
+  getUIView,
+  (ui) => ui.isDrawerOpen || false
 );

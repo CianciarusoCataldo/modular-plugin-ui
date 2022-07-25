@@ -9,7 +9,7 @@
 import { createModularEngineAction } from "modular-engine-tools";
 
 /**
- * Switch UI dark mode to on/off
+ * Switch dark mode to on/off
  *
  * @see https://cianciarusocataldo.github.io/modular-plugin-ui/#/?id=actions
  * @see https://cianciarusocataldo.github.io/modular-engine/docs
@@ -24,3 +24,26 @@ export const setDarkMode = createModularEngineAction(
     newDarkMode,
   })
 );
+
+/**
+ * Open drawer
+ *
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui/#/?id=actions
+ * @see https://cianciarusocataldo.github.io/modular-engine/docs
+ *
+ * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
+ * @copyright Cataldo Cianciaruso 2022
+ */
+export const openDrawer = createModularEngineAction("@@ui/OPEN_DRAWER");
+
+/**
+ * Close drawer
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-ui/#/?id=actions
+ * @see https://cianciarusocataldo.github.io/modular-engine/docs
+ *
+ * @author Cataldo Cianciaruso <https://github.com/CianciarusoCataldo>
+ * @copyright Cataldo Cianciaruso 2022
+ */
+export const closeDrawer = createModularEngineAction("@@ui/CLOSE_DRAWER");

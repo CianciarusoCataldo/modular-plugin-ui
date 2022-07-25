@@ -58,27 +58,26 @@ module.exports = { config };
 
 You can see a live preview by visiting [modular-engine-playground](https://cianciarusocataldo.github.io/modular-engine/)
 
-<br>
-
 ---
 
 ## API
-
-<br>
 
 ### Config
 
 This plugin adds a custom field inside the modular-engine config, `ui`. This new field contains 1 field, to easily integrate new functions:
 
-| Setting            | Description                                                                |
-| ------------------ | -------------------------------------------------------------------------- |
-| `onDarkModeChange` | - array of callbacks called everytime the dark-mode is enabled or disabled |
+| Setting            | Description                                                                                                                                                    |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onDarkModeChange` | - array of callbacks called everytime the dark-mode is enabled or disabled                                                                                     |
+| `drawer`           | - enable/disable drawer management. If true, a new field will be included into the state, `isDrawerOpen`, to drive the drawer visibility with standard actions |
 
 ### Actions
 
 | Action creator | Arguments                      | Effect                     |
 | -------------- | ------------------------------ | -------------------------- |
 | `setDarkMode`  | - `darkMode`: dark-mode to set | Switch dark-mode to on/off |
+| `openDrawer`   | /                              | open the drawer            |
+| `closeDrawer`  | /                              | close the drawer           |
 
 <br>
 
@@ -114,10 +113,11 @@ export const DarkModeButton = () => {
 
 ### Selectors
 
-| Selectors      | Returns                                   |
-| -------------- | ----------------------------------------- |
-| `getUIView`    | Ui state, or default state if not enabled |
-| `isInDarkMode` | Actual dark-mode status (on/off)          |
+| Selectors      | Returns                                                                       |
+| -------------- | ----------------------------------------------------------------------------- |
+| `getUIView`    | Ui state, or default state if not enabled                                     |
+| `isInDarkMode` | Actual dark-mode status (on/off)                                              |
+| `isInDarkMode` | Actual drawer visibility (always false if the `drawer` option is not enabled) |
 
 <br>
 
@@ -188,8 +188,7 @@ const customPlugin = () => ({
 
 ## Included libraries
 
-- [Modular-engine-types](https://github.com/CianciarusoCataldo/modular-engine-types) - to use modular-engine type definitions inside the plugin
-- [Modular-engine-tools](https://github.com/CianciarusoCataldo/modular-engine-tools) - to use modular-engine utils functions, to easily work with it
+- [Modular-engine-tools](https://github.com/CianciarusoCataldo/modular-engine-tools) - to easily work with modular-engine
 - [Modular-utils](https://github.com/CianciarusoCataldo/modular-utils) - to use shared util functions during init process
 - Modular-plugin-localization is written entirely with [Typescript](https://www.typescriptlang.org/)
 

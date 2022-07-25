@@ -55,14 +55,30 @@ const uiPlugin: UiPlugin = createModularEnginePlugin("ui", () => ({
       content: {
         darkMode: uiConfig.darkMode || false,
         onDarkModeChange: uiConfig.onDarkModeChange || [],
+        drawer: uiConfig.drawer || false,
       },
     };
   },
-  reducer: (config) => ({
-    initialState: { ...initialState, darkMode: config.ui.darkMode },
-    slice: "ui",
-    effects: uiReducer,
-  }),
+  reducer: (config) => {
+    const basicState = { ...initialState, darkMode: config.ui.darkMode };
+    return {
+      initialState: config.ui.drawer
+        ? { ...basicState, isDrawerOpen: false }
+        : basicState,
+      slice: "ui",
+      effects: config.ui.drawer
+        ? {
+            ...uiReducer,
+            [actions.openDrawer.type]: (action, state) => {
+              return { ...state, isDrawerOpen: true };
+            },
+            [actions.closeDrawer.type]: (action, state) => {
+              return { ...state, isDrawerOpen: false };
+            },
+          }
+        : uiReducer,
+    };
+  },
   modularCreatorInteractions: [
     {
       plugin: "forms",
@@ -76,7 +92,8 @@ const uiPlugin: UiPlugin = createModularEnginePlugin("ui", () => ({
       plugin: "drawer",
       effect: (field, config) => {
         field.getDarkMode = isInDarkMode;
-
+        field.onClose =
+          field.onClose || ((dispatch) => dispatch(actions.closeDrawer()));
         return field;
       },
     },

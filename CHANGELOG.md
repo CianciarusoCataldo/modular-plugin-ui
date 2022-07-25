@@ -2,6 +2,7 @@
 
 ## Versions
 
+- [0.4.0](#040)
 - [0.3.0](#030)
 - [0.2.0](#020)
 - [0.1.0](#010)
@@ -11,6 +12,12 @@
 ---
 
 ## Changes
+
+<br>
+
+### 0.4.0
+
+- Drawer support (with actions and selectors)
 
 <br>
 

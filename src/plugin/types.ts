@@ -29,6 +29,8 @@ import {
 export type UiPluginState = ModularEngineCustomState<{
   /** dark mode status */
   darkMode: boolean;
+
+  isDrawerOpen?: boolean;
 }>;
 
 /**
@@ -47,6 +49,8 @@ export type UiPluginSettings = ModularEngineCustomState<{
 
   /** Callbacks called everytime the dark mode status is changed */
   onDarkModeChange?: ((newDarkMode: boolean) => void)[];
+
+  drawer?: boolean;
 }>;
 
 /**

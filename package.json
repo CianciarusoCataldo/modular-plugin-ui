@@ -1,6 +1,6 @@
 {
   "name": "modular-plugin-ui",
-  "version": "0.3.2",
+  "version": "0.4.1",
   "description": "Manage ui properties with modular-engine system",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
